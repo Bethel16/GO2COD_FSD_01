@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-r!1hn=5gbq!xmlz%3(d7qlj@*43^@ire4nv6!s7-2hzq^7xog@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'rest_framework',
-    'corsheaders',  # allows frontend access
+    'corsheaders',
     
 ]
 
@@ -51,6 +51,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    
+
 ]
 
 ROOT_URLCONF = 'my_blog_project.urls'
@@ -73,7 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'my_blog_project.wsgi.application'
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = True  # For development only; restrict in production
 
 
 # Database
@@ -127,3 +130,30 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Add this for development
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Point to the directory where your static files are located
+]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
+# In settings.py
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000/",  # Add your frontend's origin
+    # Add any other trusted origins as needed
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True

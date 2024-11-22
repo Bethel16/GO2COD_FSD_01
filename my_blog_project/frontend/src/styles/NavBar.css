@@ -1,0 +1,36 @@
+.navbar-brand {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  .nav-link {
+    color: #c59224;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover {
+    color: #86777d;
+  }
+  
+  .navbar .dropdown-menu {
+    min-width: 180px;
+  }
+  
+  .dropdown-item {
+    color: #2c3e50;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .navbar-toggler-icon {
+    filter: invert(50%);
+  }
+  
+  @media (max-width: 992px) {
+    .navbar-nav {
+      text-align: center;
+    }
+  }
+  
