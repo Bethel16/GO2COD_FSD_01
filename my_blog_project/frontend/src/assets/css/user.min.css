@@ -93,84 +93,376 @@
   background-color: #0056b3;
 }
 
-
-/* BlogList.css */
+body {
+  background-color: #121212; /* Dark background for the entire page */
+  color: #e0e0e0; /* Light gray text for better contrast */
+}
 
 .blog-list-container {
-  text-align: center;
+  background-color: #1c1c1c; /* Dark container background */
+  padding: 2rem;
+  border-radius: 10px;
 }
 
 .blog-list-title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #4a4a4a;
-  margin-bottom: 1.5rem;
+  color: #f5f5f5; /* White-ish title color */
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .blog-card {
-  border-radius: 8px;
-  overflow: hidden;
+  background-color: #2a2a2a; /* Dark card background */
+  border: none;
+  border-radius: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .blog-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
 }
 
 .blog-image {
+  border-radius: 10px 10px 0 0;
   height: 200px;
   object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.blog-image:hover {
-  transform: scale(1.05);
 }
 
 .blog-title {
-  font-size: 1.25rem;
-  color: #333;
-  margin-bottom: 0.75rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.blog-card:hover .blog-title {
-  color: #007bff;
+  color: #ffffff;
 }
 
 .blog-text {
-  font-size: 0.9rem;
-  color: #666;
-  line-height: 1.6;
+  color: #cfcfcf;
 }
 
-.blog-actions {
-  margin-top: 1rem;
-}
-
-.blog-view-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
+.blog-actions .blog-view-btn {
+  border-color: #ffffff;
+  color: #ffffff;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.blog-view-btn:hover {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
+.blog-actions .blog-view-btn:hover {
+  background-color: #4caf50;
+  color: #ffffff;
+  border-color: #4caf50;
 }
 
 .add-blog-btn {
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
+  background-color: #333333;
+  color: #ffffff;
+  border: none;
   transition: background-color 0.3s ease;
 }
 
 .add-blog-btn:hover {
-  background-color: #28a745;
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+
+/* General container styling for consistency with theme */
+.blog-list-section {
+  background: #1e1e1e; /* Dark background for the section */
+  color: #fff;
+  padding: 3rem 0;
+}
+
+.blog-list-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #f4f4f4;
+  margin-bottom: 1.5rem;
+}
+
+/* Card styling */
+.blog-card {
+  background: #2a2a2a;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.blog-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Blog image styling */
+.blog-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 3px solid #4caf50;
+}
+
+/* Blog content area */
+.blog-content {
+  padding: 1.5rem;
+}
+
+.blog-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f4f4f4;
+  margin-bottom: 0.75rem;
+}
+
+.blog-description {
+  font-size: 1rem;
+  color: #cfcfcf;
+  margin-bottom: 1rem;
+}
+
+/* Read more button styling */
+.blog-read-more {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  color: #4caf50;
+  border: 1px solid #4caf50;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease, color 0.3s ease;
+}
+
+.blog-read-more:hover {
+  background: #4caf50;
+  color: #fff;
+}
+
+
+/* General section styling */
+.blog-list-section {
+  background: #1e1e1e;
+  color: #fff;
+  padding: 3rem 0;
+}
+
+.blog-list-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #f4f4f4;
+  margin-bottom: 1.5rem;
+}
+
+/* Card styling */
+.blog-card {
+  background: #2a2a2a;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.blog-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.blog-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 3px solid #4caf50;
+}
+
+/* Blog content */
+.blog-content {
+  padding: 1.5rem;
+}
+
+.blog-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f4f4f4;
+  margin-bottom: 0.75rem;
+}
+
+.blog-description {
+  font-size: 1rem;
+  color: #cfcfcf;
+  margin-bottom: 1rem;
+}
+
+/* Enhanced Read More button */
+.blog-read-more {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  color: #4caf50;
+  border: 2px solid #4caf50;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Hover effect with background and text color change */
+.blog-read-more:hover {
+  background-color: #4caf50;
+  color: #fff;
+  border-color: #4caf50;
+}
+
+/* Animation effect */
+.blog-read-more::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: left 0.4s ease-in-out;
+}
+
+.blog-read-more:hover::before {
+  left: 0;
+}
+
+/* Scaling animation on hover */
+.blog-read-more:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+
+/* General container styling */
+.blog-detail-container {
+  color: #f4f4f4;
+  background-color: #1e1e1e;
+  padding: 3rem 0;
+  border-radius: 10px;
+}
+
+/* Row styling for alignment */
+.blog-detail-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* Image styling */
+.blog-detail-image {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Content styling */
+.blog-detail-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 1.5rem;
+}
+
+.blog-detail-body {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+/* Edit button styling */
+.edit-btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+.edit-btn:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+/* Loading text styling */
+.loading-text {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #888;
+}
+
+/* General container styling */
+.blog-detail-container {
+  color: #f4f4f4;
+  background-color: #1e1e1e;
+  padding: 3rem 0;
+  border-radius: 10px;
+}
+
+/* Row styling for side-by-side alignment */
+.blog-detail-row {
+  display: flex;
+  flex-wrap: nowrap; /* Ensure the image and content stay side by side */
+  gap: 2rem;
+  align-items: center; /* Align image and text vertically */
+}
+
+/* Image container for slightly larger image */
+.blog-image-container {
+  flex: 0 0 50%; /* Allow the image to take 50% of the row width */
+  max-width: 600px; /* Increase the maximum width */
+}
+
+/* Image styling */
+.blog-detail-image {
+  width: 100%; /* Make the image fill its container */
+  height: auto;
+  max-height: 400px; /* Restrict the image height for consistency */
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Content column styling */
+.blog-content {
+  flex: 1; /* Allow the content to take the remaining space */
+}
+
+/* Content styling */
+.blog-detail-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 1.5rem;
+}
+
+.blog-detail-body {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+/* Edit button styling */
+.edit-btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+.edit-btn:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+/* Loading text styling */
+.loading-text {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #888;
 }

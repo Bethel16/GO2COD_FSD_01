@@ -14,19 +14,19 @@ const LoginPage = ({ setIsLoggedIn }) => {
                 withCredentials: true,
             });
             console.log("User logged in successfully", response.data);
-    
+
             // Store CSRF token and user data in localStorage
             const csrfToken = response.headers['x-csrftoken'];
             localStorage.setItem('csrfToken', csrfToken);
             localStorage.setItem('userData', JSON.stringify(response.data));
-    
+
             setIsLoggedIn(true); // Set login status in parent component
-            navigate('/profile'); // Redirect to profile page
+            navigate('/blog'); // Redirect to profile page
         } catch (error) {
             console.error("Error logging in:", error);
         }
     };
-    
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -35,20 +35,26 @@ const LoginPage = ({ setIsLoggedIn }) => {
         <div
             className="d-flex align-items-center justify-content-center vh-100"
             style={{
-                backgroundImage: 'url("http://localhost:8000/static/assets/img/header_2.jpg")',
+                backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("http://localhost:8000/static/assets/img/header_2.jpg")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
+                color: '#fff',
             }}
         >
             <div
-                className="card p-4 shadow-lg"
+                className="card p-5 shadow-lg border-0"
                 style={{
                     maxWidth: '400px',
                     width: '100%',
-                    marginTop: '100px'
+                    borderRadius: '20px',
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(10px)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
                 }}
             >
-                <h2 className="text-center mb-4">Login</h2>
+                <h3 className="text-center mb-4" style={{ color: '#ffffff', fontWeight: '700' }}>
+                    Welcome Back
+                </h3>
                 <form onSubmit={handleLogin}>
                     <div className="mb-3">
                         <input
@@ -59,7 +65,12 @@ const LoginPage = ({ setIsLoggedIn }) => {
                             required
                             className="form-control rounded-pill"
                             placeholder="Username"
-                            style={{ padding: '10px 15px', borderColor: '#4a90e2' }}
+                            style={{
+                                padding: '10px 15px',
+                                borderColor: '#4a90e2',
+                                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                                boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+                            }}
                         />
                     </div>
                     <div className="mb-4">
@@ -71,17 +82,32 @@ const LoginPage = ({ setIsLoggedIn }) => {
                             required
                             className="form-control rounded-pill"
                             placeholder="Password"
-                            style={{ padding: '10px 15px', borderColor: '#4a90e2' }}
+                            style={{
+                                padding: '10px 15px',
+                                borderColor: '#4a90e2',
+                                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                                boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+                            }}
                         />
                     </div>
                     <button
                         type="submit"
                         className="btn btn-primary w-100 rounded-pill"
-                        style={{ backgroundColor: '#4a90e2', borderColor: '#4a90e2', fontWeight: '600' }}
+                        style={{
+                            backgroundColor: '#4a90e2',
+                            borderColor: '#4a90e2',
+                            fontWeight: '600',
+                            boxShadow: '0px 4px 10px rgba(74, 144, 226, 0.4)',
+                        }}
                     >
                         Login
                     </button>
                 </form>
+                <div className="text-center mt-3">
+                    <a href="/forgot-password" style={{ color: '#4a90e2', textDecoration: 'none', fontWeight: '500' }}>
+                        Forgot Password?
+                    </a>
+                </div>
             </div>
         </div>
     );

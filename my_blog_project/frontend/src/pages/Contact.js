@@ -4,8 +4,6 @@ import NavBar from '../components/NavBar';
 const Contact = () => {
   return (
     <div>
-     <NavBar/>
-
       {/* Hero Section */}
       <section className="py-9 overflow-hidden text-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
         <div className="bg-holder overlay overlay-1" style={{ backgroundImage: 'url(http://localhost:8000/static/assets/img/header_1.jpg)' }} data-parallax="data-parallax"></div>

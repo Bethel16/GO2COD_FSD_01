@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../assets/css/theme.min.css';
-import '../assets/css/user.min.css';
-import NavDropdown from './NavDropdown';
 import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
@@ -25,89 +21,92 @@ const NavBar = () => {
     navigate('/login');
   };
 
-  const blogItems = [
-    { label: 'Blog List', href: '/blog' },
-    { label: 'my blog', href: '/my-posts' },
-  ];
-
   return (
-    <div className="fixed-top">
-      <div className="container px-0">
-        <nav className="navbar navbar-expand-lg navbar-freya navbar-light">
-          <a className="navbar-brand" href="/">
-            <div className="freya-logo">Freya</div>
-          </a>
+    <nav style={styles.navbar}>
+      <div style={styles.container}>
+        <a href="/" style={styles.logo}>
+          Furnitures
+        </a>
+        <div style={styles.navLinks}>
+          <a href="/" style={styles.navLink}>Home</a>
+          <a href="/about" style={styles.navLink}>About</a>
+          <a href="/blog" style={styles.navLink}>Blog</a>
+          <a href="/contact" style={styles.navLink}>Contact</a>
 
-          <button
-            className="navbar-toggler p-0 border-0"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#primaryNavbarCollapse"
-            aria-controls="primaryNavbarCollapse"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            style={{ display: 'inline-block', verticalAlign: 'middle' }}
-          >
-            <span className="hamburger hamburger--emphatic" style={{ color: '#333' }}>
-              <span className="hamburger-box">
-                <span className="hamburger-inner"></span>
-              </span>
-            </span>
-          </button>
-
-          <div className="collapse navbar-collapse" id="primaryNavbarCollapse">
-            <ul className="navbar-nav me-auto d-flex align-items-center">
-              <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
-              <li className="nav-item"><a className="nav-link" href="/about">About</a></li>
-              <NavDropdown title="Blog" items={blogItems} />
-              <li className="nav-item"><a className="nav-link" href="/contact">Contact</a></li>
-            </ul>
-
-            <ul className="navbar-nav ms-auto d-flex align-items-center">
-              <li className="nav-item">
-                <a className="nav-link px-2" href="header-slider-classic.html">
-                  <span className="fab fa-facebook-f" data-fa-transform="shrink-2"></span>
-                </a>
-              </li>
-              {!isLoggedIn ? (
-                <>
-                  <li className="nav-item"><a className="nav-link" href="/login">Login</a></li>
-                  <li className="nav-item"><a className="nav-link" href="/register">Register</a></li>
-                </>
-              ) : (
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="/"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    {userData && (
-                      <>
-                        <img
-                          src={userData.profile_image_url}
-                          alt="Profile"
-                          className="rounded-circle"
-                          style={{ width: '30px', height: '30px', marginRight: '8px' }}
-                        />
-                        {userData.username}
-                      </>
-                    )}
-                  </a>
-                  <ul className="dropdown-menu dropdown-menu-end">
-                    <li><a className="dropdown-item" href="/profile">Profile</a></li>
-                    <li><a className="dropdown-item" href="/settings">Settings</a></li>
-                    <li><a className="dropdown-item" href="/" onClick={handleLogout}>Logout</a></li>
-                  </ul>
-                </li>
-              )}
-            </ul>
-          </div>
-        </nav>
+          {!isLoggedIn ? (
+            <>
+              <a href="/login" style={styles.navLink}>Login</a>
+              <a href="/register" style={styles.navLink}>Register</a>
+            </>
+          ) : (
+            <div style={styles.userMenu}>
+              <span style={styles.userName}>{userData?.username}</span>
+              <button onClick={handleLogout} style={styles.logoutButton}>Logout</button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </nav>
   );
+};
+
+const styles = {
+  navbar: {
+    backgroundColor: '#222',  // Dark background for contrast
+    padding: '1rem 0',
+    position: 'relative',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+  },
+  container: {
+    maxWidth: '1100px',
+    margin: '0 auto',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '0 20px',
+  },
+  logo: {
+    color: '#fff',
+    fontSize: '1.8rem',
+    fontWeight: 'bold',
+    textDecoration: 'none',
+  },
+  navLinks: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1.5rem',
+  },
+  navLink: {
+    color: '#fff',
+    fontSize: '1rem',
+    textDecoration: 'none',
+    transition: 'color 0.3s',
+    padding: '0.5rem 0',
+  },
+  navLinkHover: {
+    color: '#4CAF50',
+  },
+  userMenu: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+  },
+  userName: {
+    color: '#fff',
+    fontSize: '1rem',
+  },
+  logoutButton: {
+    backgroundColor: '#4CAF50',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    padding: '0.5rem 1rem',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s',
+  },
+  logoutButtonHover: {
+    backgroundColor: '#45a049',
+  },
 };
 
 export default NavBar;

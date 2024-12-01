@@ -7,7 +7,6 @@ import Contact from './pages/Contact';
 import Login from './pages/LoginPage';
 import Register from './pages/RegisterPage';
 import AboutUs from './pages/AboutPage';
-import BlogPage from './pages/BlogPage';
 import BlogList from './pages/BlogList';
 import BlogDetail from "./components/BlogDetails";
 import ProfilePage from './pages/ProfilePage';
@@ -38,7 +37,6 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutUs />} />
-        <Route path="/blog-page" element={<BlogPage />} />
         <Route path="/blog" element={<BlogList />} />
         <Route path="/blogs/:id" element={<BlogDetail />} />
         <Route path="/contact" element={<Contact />} />

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getBlog } from "../pages/apiServces";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaEye } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 import AddBlog from "./AddBlog";
 
 const BlogList = () => {
@@ -20,36 +19,70 @@ const BlogList = () => {
         fetchBlogs();
     }, []);
 
+    const handleAddBlog = (newBlog) => {
+        // Add the new blog to the list and close the modal
+        setBlogs([newBlog, ...blogs]);
+        setShowAddBlog(false);
+    };
+
     return (
-        <div className="container mt-5 blog-list-container">
-            <h2 className="blog-list-title">Blog List</h2>
-            <div className="row">
-                {blogs.map(blog => (
-                    <div key={blog.id} className="col-md-4 mb-4">
-                        <div className="card blog-card shadow-sm">
-                            <img
-                                className="card-img-top blog-image"
-                                src={blog.featured_image || 'https://images.unsplash.com/photo-1593642532973-d31b6557fa68'}
-                                alt={blog.title}
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title blog-title">{blog.title}</h5>
-                                <p className="card-text blog-text">
-                                    {blog.body.slice(0, 100)}...
-                                </p>
-                                <div className="d-flex justify-content-between blog-actions">
-                                    <a href={`/blogs/${blog.id}`} className="btn btn-outline-primary btn-sm blog-view-btn">
-                                        <FaEye /> Detail view
-                                    </a>
+        <section className="blog-list-section py-5">
+            <div className="container">
+                <div className="d-flex justify-content-between align-items-center mb-4">
+                    <h2 className="blog-list-title">Latest Blogs</h2>
+                    <button
+                        className="btn btn-primary add-blog-btn"
+                        onClick={() => setShowAddBlog(true)}
+                    >
+                        Add Blog
+                    </button>
+                </div>
+                <div className="row">
+                    {blogs.map((blog) => (
+                        <div key={blog.id} className="col-md-4 mb-4">
+                            <div className="blog-card">
+                                <img
+                                    src={blog.featured_image || 'https://via.placeholder.com/400x250'}
+                                    alt={blog.title}
+                                    className="blog-image"
+                                />
+                                <div className="blog-content">
+                                    <h5 className="blog-title">{blog.title}</h5>
+                                    <p className="blog-description">
+                                        {blog.body.slice(0, 100)}...
+                                    </p>
+                                    <Link to={`/blogs/${blog.id}`} className="blog-read-more">
+                                        Read More
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Modal for Adding Blog */}
+                {showAddBlog && (
+                    <div className="modal fade show d-block" tabIndex="-1" role="dialog" style={{ backgroundColor: "rgba(0, 0, 0, 1)" }}>
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title">Add Blog</h5>
+                                    <button
+                                        type="button"
+                                        className="btn-close"
+                                        aria-label="Close"
+                                        onClick={() => setShowAddBlog(false)}
+                                    ></button>
+                                </div>
+                                <div className="modal-body">
+                                    <AddBlog handleAddBlog={handleAddBlog} handleCancelBtn={() => setShowAddBlog(false)} />
                                 </div>
                             </div>
                         </div>
                     </div>
-                ))}
+                )}
             </div>
-            <button className="btn btn-success mt-3 add-blog-btn" onClick={() => setShowAddBlog(true)}>Add new blog</button>
-            {showAddBlog && <AddBlog handleCancelBtn={() => setShowAddBlog(false)} />}
-        </div>
+        </section>
     );
 };
 
